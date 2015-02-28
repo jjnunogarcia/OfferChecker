@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="offer_url">http://api.sponsorpay.com/feed/v1/offers.json?</string>
+    <string name="api_key">1c915e3b5d42d05136185030892fbb846c278927</string>
+</resources>
