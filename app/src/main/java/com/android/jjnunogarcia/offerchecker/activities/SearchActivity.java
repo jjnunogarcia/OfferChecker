@@ -12,6 +12,7 @@ import butterknife.OnClick;
 import com.android.jjnunogarcia.offerchecker.R;
 import com.android.jjnunogarcia.offerchecker.backend.requests.GetOffersTask;
 import com.android.jjnunogarcia.offerchecker.eventbus.GetAdvertisingIdInfoTaskResultEvent;
+import com.android.jjnunogarcia.offerchecker.eventbus.requests.GetOffersTaskResultEvent;
 import com.android.jjnunogarcia.offerchecker.threads.GetAdvertisingIdInfoTask;
 import de.greenrobot.event.EventBus;
 import org.apache.http.NameValuePair;
@@ -22,8 +23,8 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class MainActivity extends ActionBarActivity {
-  private static final String TAG = MainActivity.class.getSimpleName();
+public class SearchActivity extends ActionBarActivity {
+  private static final String TAG = SearchActivity.class.getSimpleName();
 
   @InjectView(R.id.uid_edit_text)
   EditText uidEditText;
@@ -65,6 +66,14 @@ public class MainActivity extends ActionBarActivity {
     parameters.add(new BasicNameValuePair("pub0", "test"));
     GetOffersTask getOffersTask = new GetOffersTask(getApplicationContext(), parameters);
     getOffersTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+  }
+
+  public void onEvent(GetOffersTaskResultEvent getOffersTaskResultEvent) {
+    if (getOffersTaskResultEvent.getServerResponse() == GetOffersTask.SERVER_SUCCESS) {
+      ResultsActivity.startNewActivity(getApplicationContext(), getOffersTaskResultEvent.getOfferTaskResult().getOffers());
+    } else {
+      // TODO show error
+    }
   }
 
   private String getLanguage() {

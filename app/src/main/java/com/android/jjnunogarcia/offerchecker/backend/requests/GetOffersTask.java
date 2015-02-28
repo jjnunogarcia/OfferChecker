@@ -8,6 +8,7 @@ import com.android.jjnunogarcia.offerchecker.eventbus.requests.GetOffersTaskResu
 import com.android.jjnunogarcia.offerchecker.helpers.String2SHA1;
 import com.android.jjnunogarcia.offerchecker.model.jsonparsing.OfferTaskResult;
 import com.google.gson.Gson;
+import de.greenrobot.event.EventBus;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -93,6 +94,12 @@ public class GetOffersTask extends AsyncTask<Void, Void, GetOffersTaskResultEven
     }
 
     return getOffersTaskResultEvent;
+  }
+
+  @Override
+  protected void onPostExecute(GetOffersTaskResultEvent getOffersTaskResultEvent) {
+    super.onPostExecute(getOffersTaskResultEvent);
+    EventBus.getDefault().post(getOffersTaskResultEvent);
   }
 
   private Comparator<NameValuePair> comp = new Comparator<NameValuePair>() {
