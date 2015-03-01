@@ -1,6 +1,7 @@
 package com.android.jjnunogarcia.offerchecker.adapters;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.android.jjnunogarcia.offerchecker.R;
+import com.android.jjnunogarcia.offerchecker.helpers.Utils;
 import com.android.jjnunogarcia.offerchecker.model.jsonparsing.Offer;
 
 import java.util.ArrayList;
@@ -67,6 +69,8 @@ public class OffersListAdapter extends BaseAdapter {
     if (view == null) {
       view = LayoutInflater.from(context).inflate(R.layout.offer_row, parent, false);
       offerViewHolder = new OfferViewHolder(view);
+      offerViewHolder.title.setTypeface(Typeface.createFromAsset(context.getAssets(), Utils.FONT_PATH_FABRICA));
+      offerViewHolder.teaser.setTypeface(Typeface.createFromAsset(context.getAssets(), Utils.FONT_PATH_FABRICA));
       view.setTag(offerViewHolder);
     } else {
       offerViewHolder = (OfferViewHolder) view.getTag();

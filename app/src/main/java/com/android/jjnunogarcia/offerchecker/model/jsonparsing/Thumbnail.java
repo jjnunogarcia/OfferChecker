@@ -55,4 +55,12 @@ public class Thumbnail implements Parcelable {
     lowResolution = source.readString();
     highResolution = source.readString();
   }
+
+  public String getLowResolution() {
+    return lowResolution;
+  }
+
+  public String getHighResolution() {
+    return highResolution;
+  }
 }

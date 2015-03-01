@@ -55,4 +55,12 @@ public class TimeToPayout implements Parcelable {
     amount = source.readInt();
     readable = source.readString();
   }
+
+  public int getAmount() {
+    return amount;
+  }
+
+  public String getReadable() {
+    return readable;
+  }
 }

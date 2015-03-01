@@ -1,70 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.OfferDetailActivity">
 
-    <TextView
-        android:id="@+id/activity_offer_detail_title_text"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black" />
+        android:padding="15dp">
 
-    <TextView
-        android:id="@+id/activity_offer_detail_offer_id_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black" />
+        <TextView
+            style="@style/BigBlueFont"
+            android:id="@+id/activity_offer_detail_title_header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_offer_detail_title_header_text"
+            tools:text="Title" />
 
-    <TextView
-        android:id="@+id/activity_offer_detail_teaser_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black" />
+        <TextView
+            style="@style/MediumGreyFont"
+            android:id="@+id/activity_offer_detail_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="The offer title" />
 
-    <TextView
-        android:id="@+id/activity_offer_detail_required_actions_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black" />
+        <TextView
+            style="@style/BigBlueFont"
+            android:id="@+id/activity_offer_detail_offer_id_header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/activity_offer_detail_offer_id_header_text"
+            tools:text="Offer ID" />
 
-    <TextView
-        android:id="@+id/activity_offer_detail_link_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black" />
+        <TextView
+            style="@style/MediumGreyFont"
+            android:id="@+id/activity_offer_detail_offer_id_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="123456" />
 
-    <!--<TextView-->
-    <!--android:id="@+id/activity_offer_detail_" TODO offer types -->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:textColor="@color/black" />-->
+        <TextView
+            style="@style/BigBlueFont"
+            android:id="@+id/activity_offer_detail_teaser_header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/activity_offer_detail_teaser_header_text"
+            tools:text="Offer Detail" />
 
-    <TextView
-        android:id="@+id/activity_offer_detail_payout_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black" />
+        <TextView
+            style="@style/MediumGreyFont"
+            android:id="@+id/activity_offer_detail_teaser_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="The offer detail" />
 
-    <TextView
-        android:id="@+id/activity_offer_detail_time_to_payout_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black" />
+        <TextView
+            style="@style/BigBlueFont"
+            android:id="@+id/activity_offer_detail_required_actions_header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/activity_offer_detail_required_actions_header_text"
+            tools:text="Required Actions" />
 
-    <ImageView
-        android:id="@+id/activity_offer_detail_thumbnail_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        android:adjustViewBounds="true" />
+        <TextView
+            style="@style/MediumGreyFont"
+            android:id="@+id/activity_offer_detail_required_actions_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="The required actions" />
 
-    <TextView
-        android:id="@+id/activity_offer_detail_store_id_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black" />
+        <TextView
+            style="@style/BigBlueFont"
+            android:id="@+id/activity_offer_detail_link_header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/activity_offer_detail_link_header_text"
+            tools:text="Link" />
 
-</LinearLayout>
+        <TextView
+            style="@style/MediumGreyFont"
+            android:id="@+id/activity_offer_detail_link_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:textColorLink="@color/orange"
+            tools:text="https://www.mylinktest.com/" />
+
+        <TextView
+            style="@style/BigBlueFont"
+            android:id="@+id/activity_offer_detail_offer_types_header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/activity_offer_detail_offer_types_header_text"
+            tools:text="Offer Types" />
+
+        <Button
+            android:id="@+id/activity_offer_detail_offer_types_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_offer_detail_offer_types_button_text"
+            tools:text="Check offer types" />
+
+        <TextView
+            style="@style/BigBlueFont"
+            android:id="@+id/activity_offer_detail_payout_header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/activity_offer_detail_payout_header_text"
+            tools:text="Payout" />
+
+        <TextView
+            style="@style/MediumGreyFont"
+            android:id="@+id/activity_offer_detail_payout_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="The offer detail" />
+
+        <TextView
+            style="@style/BigBlueFont"
+            android:id="@+id/activity_offer_detail_time_to_payout_header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/activity_offer_detail_time_to_payout_header_text"
+            tools:text="Time to Payout" />
+
+        <TextView
+            style="@style/MediumBlueFont"
+            android:id="@+id/activity_offer_detail_time_to_payout_amount_header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/activity_offer_detail_time_to_payout_amount_header_text"
+            tools:text="Amount" />
+
+        <TextView
+            style="@style/MediumGreyFont"
+            android:id="@+id/activity_offer_detail_time_to_payout_amount_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="123456" />
+
+        <TextView
+            style="@style/MediumBlueFont"
+            android:id="@+id/activity_offer_detail_time_to_payout_readable_header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/activity_offer_detail_time_to_payout_readable_header_text"
+            tools:text="Readable" />
+
+        <TextView
+            style="@style/MediumGreyFont"
+            android:id="@+id/activity_offer_detail_time_to_payout_readable_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Readable text" />
+
+        <TextView
+            style="@style/BigBlueFont"
+            android:id="@+id/activity_offer_detail_thumbnail_header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/activity_offer_detail_thumbnail_header_text"
+            tools:text="Thumbnail" />
+
+        <RelativeLayout
+            android:layout_width="@dimen/activity_offer_detail_thumbnail_size"
+            android:layout_height="@dimen/activity_offer_detail_thumbnail_size">
+
+            <ImageView
+                android:id="@+id/activity_offer_detail_thumbnail_image"
+                android:layout_width="@dimen/activity_offer_detail_thumbnail_size"
+                android:layout_height="@dimen/activity_offer_detail_thumbnail_size"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true" />
+
+            <ProgressBar
+                android:id="@+id/activity_offer_detail_thumbnail_image_progress_bar"
+                style="@android:style/Widget.ProgressBar.Small"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <TextView
+            style="@style/BigBlueFont"
+            android:id="@+id/activity_offer_detail_store_id_header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/activity_offer_detail_store_id_header_text"
+            tools:text="Store ID" />
+
+        <TextView
+            style="@style/MediumGreyFont"
+            android:id="@+id/activity_offer_detail_store_id_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="123456" />
+
+    </LinearLayout>
+
+</ScrollView>

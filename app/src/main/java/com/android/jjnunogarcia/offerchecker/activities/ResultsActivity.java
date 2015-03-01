@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -44,6 +45,7 @@ public class ResultsActivity extends ActionBarActivity implements AdapterView.On
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_results);
     ButterKnife.inject(this);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     Bundle arguments = getIntent().getExtras();
 
@@ -59,5 +61,16 @@ public class ResultsActivity extends ActionBarActivity implements AdapterView.On
   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
     Offer offer = offersListAdapter.getItem(position);
     OfferDetailActivity.startNewActivity(getApplicationContext(), offer);
+  }
+
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case android.R.id.home:
+        finish();
+        return true;
+    }
+    return super.onOptionsItemSelected(item);
   }
 }

@@ -1,8 +1,34 @@
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="BigGreyFont" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:textSize">@dimen/big_font_size</item>
+    </style>
+
+    <style name="BigBlueFont" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textSize">@dimen/big_font_size</item>
+    </style>
+
+    <style name="MediumGreyFont" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
+    </style>
+
+    <style name="MediumBlueFont" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
+    </style>
+
+    <style name="SmallGreyFont" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:textSize">@dimen/small_font_size</item>
+    </style>
+
+    <style name="SmallBlueFont" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textSize">@dimen/small_font_size</item>
     </style>
 
 </resources>

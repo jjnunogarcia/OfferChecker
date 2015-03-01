@@ -55,4 +55,12 @@ public class OfferType implements Parcelable {
     offerTypeId = source.readInt();
     readable = source.readString();
   }
+
+  public int getOfferTypeId() {
+    return offerTypeId;
+  }
+
+  public String getReadable() {
+    return readable;
+  }
 }

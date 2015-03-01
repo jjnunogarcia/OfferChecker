@@ -7,7 +7,7 @@
 
     <TextView
         style="@style/BigBlueFont"
-        android:id="@+id/offer_row_title"
+        android:id="@+id/offer_type_row_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scrollHorizontally="true"
@@ -16,7 +16,7 @@
 
     <TextView
         style="@style/MediumGreyFont"
-        android:id="@+id/offer_row_teaser"
+        android:id="@+id/offer_type_row_readable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scrollHorizontally="true"

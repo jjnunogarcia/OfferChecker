@@ -1,47 +1,63 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".SearchActivity">
+    tools:context=".activities.SearchActivity">
 
-    <TextView
-        android:text="@string/hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <EditText
-        android:id="@+id/uid_edit_text"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="uid" />
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:focusableInTouchMode="true"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin">
 
-    <EditText
-        android:id="@+id/api_key_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="API Key" />
+        <TextView
+            style="@style/BigBlueFont"
+            android:id="@+id/activity_search_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_search_title_text" />
 
-    <EditText
-        android:id="@+id/appid_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="appid" />
+        <EditText
+            android:id="@+id/activity_search_uid_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:hint="@string/activity_search_uid_edit_text_hint" />
 
-    <EditText
-        android:id="@+id/pub0_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="pub0" />
+        <EditText
+            android:id="@+id/activity_search_api_key_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:hint="@string/activity_search_api_key_edit_text_hint" />
 
-    <Button
-        android:id="@+id/get_offers_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Get offers" />
+        <EditText
+            android:id="@+id/activity_search_appid_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:hint="@string/activity_search_appid_edit_text_hint" />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/activity_search_pub0_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:hint="@string/activity_search_option_edit_text_hint" />
+
+        <Button
+            android:id="@+id/activity_search_get_offers_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/orange_button_background"
+            android:layout_marginTop="25dp"
+            android:textColor="@color/white"
+            android:text="@string/activity_search_button_text" />
+
+    </LinearLayout>
+
+</ScrollView>

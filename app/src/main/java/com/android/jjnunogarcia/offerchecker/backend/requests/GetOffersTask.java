@@ -111,7 +111,7 @@ public class GetOffersTask extends AsyncTask<Void, Void, GetOffersTaskResultEven
 
   private String calculateHashKey() {
     Collections.sort(parameters, comp);
-    String params = URLEncodedUtils.format(parameters, HTTP.UTF_8) + "&" + context.getString(R.string.api_key);
+    String params = URLEncodedUtils.format(parameters, HTTP.UTF_8) + "&" + context.getString(R.string.api_key); // TODO fix this, it should be the api key entered in edit text
     String hashKey = "";
     try {
       hashKey = String2SHA1.SHA1(params);

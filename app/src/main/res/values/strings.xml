@@ -1,6 +1,37 @@
 <resources>
     <string name="app_name">OfferChecker</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="activity_search_action_bar">Search for offers</string>
+    <string name="activity_search_title_text">Check offer!</string>
+    <string name="activity_search_uid_edit_text_hint">uid</string>
+    <string name="activity_search_api_key_edit_text_hint">API Key</string>
+    <string name="activity_search_appid_edit_text_hint">appid</string>
+    <string name="activity_search_option_edit_text_hint">pub0</string>
+    <string name="activity_search_button_text">Get offers</string>
+    <string name="activity_search_error">There has been an error in the search. Please, try again</string>
+
+    <string name="activity_results_action_bar">Search results</string>
+
+    <string name="activity_offer_detail_action_bar">Offer detail</string>
+    <string name="activity_offer_detail_title_header_text">Title</string>
+    <string name="activity_offer_detail_offer_id_header_text">Offer ID</string>
+    <string name="activity_offer_detail_teaser_header_text">Offer Detail</string>
+    <string name="activity_offer_detail_required_actions_header_text">Required Actions</string>
+    <string name="activity_offer_detail_link_header_text">Link</string>
+    <string name="activity_offer_detail_offer_types_button_text">Check offer types</string>
+    <string name="activity_offer_detail_payout_header_text">Payout</string>
+    <string name="activity_offer_detail_time_to_payout_header_text">Time to Payout</string>
+    <string name="activity_offer_detail_time_to_payout_amount_header_text">Amount</string>
+    <string name="activity_offer_detail_time_to_payout_readable_header_text">Readable</string>
+    <string name="activity_offer_detail_thumbnail_header_text">Thumbnail</string>
+    <string name="activity_offer_detail_store_id_header_text">Store ID</string>
+
+    <string name="activity_display_image_action_bar">Thumbnail detail</string>
+    <string name="activity_display_image_error">Error retrieving image</string>
+    <string name="activity_offer_detail_offer_types_header_text">Offer Types</string>
+
+    <string name="offer_types_dialog_title">Offer Types</string>
+    <string name="offer_types_dialog_button">OK</string>
 </resources>

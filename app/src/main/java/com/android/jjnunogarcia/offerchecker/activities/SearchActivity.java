@@ -1,11 +1,15 @@
 package com.android.jjnunogarcia.offerchecker.activities;
 
+import android.app.ProgressDialog;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -13,6 +17,7 @@ import com.android.jjnunogarcia.offerchecker.R;
 import com.android.jjnunogarcia.offerchecker.backend.requests.GetOffersTask;
 import com.android.jjnunogarcia.offerchecker.eventbus.GetAdvertisingIdInfoTaskResultEvent;
 import com.android.jjnunogarcia.offerchecker.eventbus.requests.GetOffersTaskResultEvent;
+import com.android.jjnunogarcia.offerchecker.helpers.Utils;
 import com.android.jjnunogarcia.offerchecker.threads.GetAdvertisingIdInfoTask;
 import de.greenrobot.event.EventBus;
 import org.apache.http.NameValuePair;
@@ -26,28 +31,48 @@ import java.util.Locale;
 public class SearchActivity extends ActionBarActivity {
   private static final String TAG = SearchActivity.class.getSimpleName();
 
-  @InjectView(R.id.uid_edit_text)
+  @InjectView(R.id.activity_search_title_text)
+  TextView titleText;
+  @InjectView(R.id.activity_search_uid_edit_text)
   EditText uidEditText;
-  @InjectView(R.id.api_key_edit_text)
+  @InjectView(R.id.activity_search_api_key_edit_text)
   EditText apiKeyEditText;
-  @InjectView(R.id.appid_edit_text)
+  @InjectView(R.id.activity_search_appid_edit_text)
   EditText appIdEditText;
-  @InjectView(R.id.pub0_edit_text)
+  @InjectView(R.id.activity_search_pub0_edit_text)
   EditText pub0EditText;
-  @InjectView(R.id.get_offers_button)
+  @InjectView(R.id.activity_search_get_offers_button)
   Button   getOffersButton;
+
+  private ProgressDialog progressDialog;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_search);
     ButterKnife.inject(this);
+    setFonts();
   }
 
-  @OnClick(R.id.get_offers_button)
+  private void setFonts() {
+    Typeface typeface = Typeface.createFromAsset(getAssets(), Utils.FONT_PATH_FABRICA);
+    titleText.setTypeface(typeface);
+    uidEditText.setTypeface(typeface);
+    apiKeyEditText.setTypeface(typeface);
+    appIdEditText.setTypeface(typeface);
+    pub0EditText.setTypeface(typeface);
+    getOffersButton.setTypeface(typeface);
+  }
+
+  @OnClick(R.id.activity_search_get_offers_button)
   void getOffers() {
+//    if (uidEditText.getText().toString().trim().isEmpty() || apiKeyEditText.getText().toString().trim().isEmpty() || appIdEditText.getText().toString().trim().isEmpty()) {
+//      Toast.makeText(getApplicationContext(), "Please, complete the fields", Toast.LENGTH_SHORT).show();
+//    } else {
+    progressDialog = ProgressDialog.show(this, "Loading", "Please wait...", true);
     GetAdvertisingIdInfoTask getAdvertisingIdInfoTask = new GetAdvertisingIdInfoTask(getApplicationContext());
     getAdvertisingIdInfoTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//    }
   }
 
   public void onEvent(GetAdvertisingIdInfoTaskResultEvent getAdvertisingIdInfoTaskResultEvent) {
@@ -69,10 +94,11 @@ public class SearchActivity extends ActionBarActivity {
   }
 
   public void onEvent(GetOffersTaskResultEvent getOffersTaskResultEvent) {
+    progressDialog.hide();
     if (getOffersTaskResultEvent.getServerResponse() == GetOffersTask.SERVER_SUCCESS) {
       ResultsActivity.startNewActivity(getApplicationContext(), getOffersTaskResultEvent.getOfferTaskResult().getOffers());
     } else {
-      // TODO show error
+      Toast.makeText(getApplicationContext(), getString(R.string.activity_search_error), Toast.LENGTH_SHORT).show();
     }
   }
 

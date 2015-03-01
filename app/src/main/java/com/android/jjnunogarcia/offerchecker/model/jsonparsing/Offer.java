@@ -5,7 +5,6 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * User: jesus
@@ -15,25 +14,25 @@ import java.util.List;
  */
 public class Offer implements Parcelable {
   @SerializedName("title")
-  private String          title;
+  private String               title;
   @SerializedName("offer_id")
-  private int             offerId;
+  private int                  offerId;
   @SerializedName("teaser")
-  private String          teaser;
+  private String               teaser;
   @SerializedName("required_actions")
-  private String          requiredActions;
+  private String               requiredActions;
   @SerializedName("link")
-  private String          link;
+  private String               link;
   @SerializedName("offer_types")
-  private List<OfferType> offerTypes;
+  private ArrayList<OfferType> offerTypes;
   @SerializedName("payout")
-  private int             payout;
+  private int                  payout;
   @SerializedName("time_to_payout")
-  private TimeToPayout    timeToPayout;
+  private TimeToPayout         timeToPayout;
   @SerializedName("thumbnail")
-  private Thumbnail       thumbnail;
+  private Thumbnail            thumbnail;
   @SerializedName("store_id")
-  private String          storeId;
+  private String               storeId;
 
   public static final Creator<Offer> CREATOR;
 
@@ -113,7 +112,7 @@ public class Offer implements Parcelable {
     return link;
   }
 
-  public List<OfferType> getOfferTypes() {
+  public ArrayList<OfferType> getOfferTypes() {
     return offerTypes;
   }
 
