@@ -60,7 +60,15 @@ public class OfferType implements Parcelable {
     return offerTypeId;
   }
 
+  public void setOfferTypeId(int offerTypeId) {
+    this.offerTypeId = offerTypeId;
+  }
+
   public String getReadable() {
     return readable;
+  }
+
+  public void setReadable(String readable) {
+    this.readable = readable;
   }
 }

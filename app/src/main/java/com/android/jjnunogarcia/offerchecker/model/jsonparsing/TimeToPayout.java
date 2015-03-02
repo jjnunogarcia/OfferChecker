@@ -60,7 +60,15 @@ public class TimeToPayout implements Parcelable {
     return amount;
   }
 
+  public void setAmount(int amount) {
+    this.amount = amount;
+  }
+
   public String getReadable() {
     return readable;
+  }
+
+  public void setReadable(String readable) {
+    this.readable = readable;
   }
 }

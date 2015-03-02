@@ -80,23 +80,47 @@ public class OfferTaskResult implements Parcelable {
     return code;
   }
 
+  public void setCode(String code) {
+    this.code = code;
+  }
+
   public String getMessage() {
     return message;
+  }
+
+  public void setMessage(String message) {
+    this.message = message;
   }
 
   public int getCount() {
     return count;
   }
 
+  public void setCount(int count) {
+    this.count = count;
+  }
+
   public int getPages() {
     return pages;
+  }
+
+  public void setPages(int pages) {
+    this.pages = pages;
   }
 
   public Information getInformation() {
     return information;
   }
 
+  public void setInformation(Information information) {
+    this.information = information;
+  }
+
   public ArrayList<Offer> getOffers() {
     return offers;
+  }
+
+  public void setOffers(ArrayList<Offer> offers) {
+    this.offers = offers;
   }
 }

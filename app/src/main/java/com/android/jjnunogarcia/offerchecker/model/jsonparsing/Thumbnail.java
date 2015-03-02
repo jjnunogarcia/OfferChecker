@@ -60,7 +60,15 @@ public class Thumbnail implements Parcelable {
     return lowResolution;
   }
 
+  public void setLowResolution(String lowResolution) {
+    this.lowResolution = lowResolution;
+  }
+
   public String getHighResolution() {
     return highResolution;
+  }
+
+  public void setHighResolution(String highResolution) {
+    this.highResolution = highResolution;
   }
 }

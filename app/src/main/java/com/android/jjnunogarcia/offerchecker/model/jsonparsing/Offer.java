@@ -96,39 +96,79 @@ public class Offer implements Parcelable {
     return title;
   }
 
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
   public int getOfferId() {
     return offerId;
+  }
+
+  public void setOfferId(int offerId) {
+    this.offerId = offerId;
   }
 
   public String getTeaser() {
     return teaser;
   }
 
+  public void setTeaser(String teaser) {
+    this.teaser = teaser;
+  }
+
   public String getRequiredActions() {
     return requiredActions;
+  }
+
+  public void setRequiredActions(String requiredActions) {
+    this.requiredActions = requiredActions;
   }
 
   public String getLink() {
     return link;
   }
 
+  public void setLink(String link) {
+    this.link = link;
+  }
+
   public ArrayList<OfferType> getOfferTypes() {
     return offerTypes;
+  }
+
+  public void setOfferTypes(ArrayList<OfferType> offerTypes) {
+    this.offerTypes = offerTypes;
   }
 
   public int getPayout() {
     return payout;
   }
 
+  public void setPayout(int payout) {
+    this.payout = payout;
+  }
+
   public TimeToPayout getTimeToPayout() {
     return timeToPayout;
+  }
+
+  public void setTimeToPayout(TimeToPayout timeToPayout) {
+    this.timeToPayout = timeToPayout;
   }
 
   public Thumbnail getThumbnail() {
     return thumbnail;
   }
 
+  public void setThumbnail(Thumbnail thumbnail) {
+    this.thumbnail = thumbnail;
+  }
+
   public String getStoreId() {
     return storeId;
+  }
+
+  public void setStoreId(String storeId) {
+    this.storeId = storeId;
   }
 }

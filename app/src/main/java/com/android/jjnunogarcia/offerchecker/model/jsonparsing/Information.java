@@ -76,23 +76,47 @@ public class Information implements Parcelable {
     return appName;
   }
 
+  public void setAppName(String appName) {
+    this.appName = appName;
+  }
+
   public int getAppId() {
     return appId;
+  }
+
+  public void setAppId(int appId) {
+    this.appId = appId;
   }
 
   public String getVirtualCurrency() {
     return virtualCurrency;
   }
 
+  public void setVirtualCurrency(String virtualCurrency) {
+    this.virtualCurrency = virtualCurrency;
+  }
+
   public String getCountry() {
     return country;
+  }
+
+  public void setCountry(String country) {
+    this.country = country;
   }
 
   public String getLanguage() {
     return language;
   }
 
+  public void setLanguage(String language) {
+    this.language = language;
+  }
+
   public String getSupportUrl() {
     return supportUrl;
+  }
+
+  public void setSupportUrl(String supportUrl) {
+    this.supportUrl = supportUrl;
   }
 }
