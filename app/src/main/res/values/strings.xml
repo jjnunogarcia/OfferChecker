@@ -10,9 +10,11 @@
     <string name="activity_search_appid_edit_text_hint">appid</string>
     <string name="activity_search_option_edit_text_hint">pub0</string>
     <string name="activity_search_button_text">Get offers</string>
+    <string name="activity_search_bad_signature">Signature verification failed</string>
     <string name="activity_search_error">There has been an error in the search. Please, try again</string>
 
     <string name="activity_results_action_bar">Search results</string>
+    <string name="activity_results_no_offers">No offers</string>
 
     <string name="activity_offer_detail_action_bar">Offer detail</string>
     <string name="activity_offer_detail_title_header_text">Title</string>

@@ -2,16 +2,19 @@ package com.android.jjnunogarcia.offerchecker.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.android.jjnunogarcia.offerchecker.R;
 import com.android.jjnunogarcia.offerchecker.adapters.OffersListAdapter;
+import com.android.jjnunogarcia.offerchecker.helpers.Utils;
 import com.android.jjnunogarcia.offerchecker.model.jsonparsing.Offer;
 
 import java.util.ArrayList;
@@ -28,6 +31,8 @@ public class ResultsActivity extends ActionBarActivity implements AdapterView.On
 
   @InjectView(R.id.activity_results_list_view)
   ListView listView;
+  @InjectView(R.id.activity_results_no_offers_text)
+  TextView noOffersText;
 
   private OffersListAdapter offersListAdapter;
 
@@ -46,15 +51,28 @@ public class ResultsActivity extends ActionBarActivity implements AdapterView.On
     setContentView(R.layout.activity_results);
     ButterKnife.inject(this);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    setFonts();
 
     Bundle arguments = getIntent().getExtras();
 
     if (arguments != null && arguments.containsKey(KEY_OFFERS)) {
       ArrayList<Offer> offers = arguments.getParcelableArrayList(KEY_OFFERS);
-      offersListAdapter = new OffersListAdapter(getApplicationContext(), offers);
-      listView.setAdapter(offersListAdapter);
-      listView.setOnItemClickListener(this);
+      if (offers == null || offers.isEmpty()) {
+        listView.setVisibility(View.GONE);
+        noOffersText.setVisibility(View.VISIBLE);
+      } else {
+        listView.setVisibility(View.VISIBLE);
+        noOffersText.setVisibility(View.GONE);
+        offersListAdapter = new OffersListAdapter(getApplicationContext(), offers);
+        listView.setAdapter(offersListAdapter);
+        listView.setOnItemClickListener(this);
+      }
     }
+  }
+
+  private void setFonts() {
+    Typeface typeface = Typeface.createFromAsset(getAssets(), Utils.FONT_PATH_FABRICA);
+    noOffersText.setTypeface(typeface);
   }
 
   @Override

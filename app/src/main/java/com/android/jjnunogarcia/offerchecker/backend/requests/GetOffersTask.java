@@ -9,10 +9,7 @@ import com.android.jjnunogarcia.offerchecker.helpers.String2SHA1;
 import com.android.jjnunogarcia.offerchecker.model.jsonparsing.OfferTaskResult;
 import com.google.gson.Gson;
 import de.greenrobot.event.EventBus;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.StatusLine;
+import org.apache.http.*;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
@@ -40,17 +37,21 @@ import java.util.List;
  * @author j.nuno@klara.com
  */
 public class GetOffersTask extends AsyncTask<Void, Void, GetOffersTaskResultEvent> implements ResponseHandler<GetOffersTaskResultEvent> {
-  private static final String TAG                = GetOffersTask.class.getSimpleName();
-  public static final  int    CONNECTION_TIMEOUT = 10000;
-  public static final  int    SERVER_NOT_FOUND   = 404;
-  public static final  int    SERVER_SUCCESS     = 200;
+  private static final String TAG                  = GetOffersTask.class.getSimpleName();
+  public static final  int    CONNECTION_TIMEOUT   = 10000;
+  public static final  int    SERVER_NOT_FOUND     = 404;
+  public static final  int    SERVER_SUCCESS       = 200;
+  public static final  int    SIGNATURE_FAILED     = -1;
+  public static final  String RESPONSE_HEADER_NAME = "X-Sponsorpay-Response-Signature";
 
   private Context                  context;
   private List<NameValuePair>      parameters;
+  private String                   apiKey;
   private GetOffersTaskResultEvent getOffersTaskResultEvent;
 
-  public GetOffersTask(Context context, List<NameValuePair> parameters) {
+  public GetOffersTask(Context context, List<NameValuePair> parameters, String apiKey) {
     this.context = context;
+    this.apiKey = apiKey;
     this.parameters = new ArrayList<>(parameters);
     getOffersTaskResultEvent = new GetOffersTaskResultEvent(SERVER_NOT_FOUND);
   }
@@ -78,13 +79,18 @@ public class GetOffersTask extends AsyncTask<Void, Void, GetOffersTaskResultEven
 
   @Override
   public GetOffersTaskResultEvent handleResponse(HttpResponse httpResponse) throws IOException {
+    Header[] headers = httpResponse.getHeaders(RESPONSE_HEADER_NAME);
     HttpEntity entity = httpResponse.getEntity();
     StatusLine statusLine = httpResponse.getStatusLine();
 
     if (entity != null && statusLine != null) {
       int statusCode = statusLine.getStatusCode();
-      getOffersTaskResultEvent.setServerResponse(statusCode);
       String responseString = EntityUtils.toString(entity);
+      if (!checkSignature(responseString, headers)) {
+        getOffersTaskResultEvent.setServerResponse(SIGNATURE_FAILED);
+        return getOffersTaskResultEvent;
+      }
+      getOffersTaskResultEvent.setServerResponse(statusCode);
       getOffersTaskResultEvent.setServerMessage(responseString);
       if (statusCode == SERVER_SUCCESS) {
         Gson gson = new Gson();
@@ -111,7 +117,7 @@ public class GetOffersTask extends AsyncTask<Void, Void, GetOffersTaskResultEven
 
   private String calculateHashKey() {
     Collections.sort(parameters, comp);
-    String params = URLEncodedUtils.format(parameters, HTTP.UTF_8) + "&" + context.getString(R.string.api_key); // TODO fix this, it should be the api key entered in edit text
+    String params = URLEncodedUtils.format(parameters, HTTP.UTF_8) + "&" + apiKey;
     String hashKey = "";
     try {
       hashKey = String2SHA1.SHA1(params);
@@ -122,5 +128,19 @@ public class GetOffersTask extends AsyncTask<Void, Void, GetOffersTaskResultEven
     }
 
     return hashKey;
+  }
+
+  private boolean checkSignature(String responseString, Header[] headers) {
+    String response = responseString + apiKey;
+    String hashKey = "";
+    try {
+      hashKey = String2SHA1.SHA1(response);
+    } catch (NoSuchAlgorithmException e) {
+      Log.e(TAG, "No algorithm exception", e);
+    } catch (UnsupportedEncodingException e) {
+      Log.e(TAG, "Unsupported encoding exception", e);
+    }
+
+    return headers.length > 0 && hashKey.equals(headers[0].getValue());
   }
 }

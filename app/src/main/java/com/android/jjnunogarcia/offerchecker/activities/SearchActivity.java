@@ -89,7 +89,7 @@ public class SearchActivity extends ActionBarActivity {
     parameters.add(new BasicNameValuePair("google_ad_id", advertisingId));
     parameters.add(new BasicNameValuePair("google_ad_id_limited_tracking_enabled", String.valueOf(trackingEnabled)));
     parameters.add(new BasicNameValuePair("pub0", "test"));
-    GetOffersTask getOffersTask = new GetOffersTask(getApplicationContext(), parameters);
+    GetOffersTask getOffersTask = new GetOffersTask(getApplicationContext(), parameters, getString(R.string.api_key)); // TODO get api key from input
     getOffersTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
@@ -97,6 +97,8 @@ public class SearchActivity extends ActionBarActivity {
     progressDialog.hide();
     if (getOffersTaskResultEvent.getServerResponse() == GetOffersTask.SERVER_SUCCESS) {
       ResultsActivity.startNewActivity(getApplicationContext(), getOffersTaskResultEvent.getOfferTaskResult().getOffers());
+    } else if (getOffersTaskResultEvent.getServerResponse() == GetOffersTask.SIGNATURE_FAILED) {
+      Toast.makeText(getApplicationContext(), getString(R.string.activity_search_bad_signature), Toast.LENGTH_SHORT).show();
     } else {
       Toast.makeText(getApplicationContext(), getString(R.string.activity_search_error), Toast.LENGTH_SHORT).show();
     }
