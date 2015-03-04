@@ -18,14 +18,16 @@ import java.io.IOException;
  * @author j.nuno@klara.com
  */
 public class GetAdvertisingIdInfoTask extends AsyncTask<Void, Void, GetAdvertisingIdInfoTaskResultEvent> {
-  private static final String TAG = GetAdvertisingIdInfoTask.class.getSimpleName();
+  private static final String TAG     = GetAdvertisingIdInfoTask.class.getSimpleName();
+  public static final  int    SUCCESS = 0;
+  public static final  int    ERROR   = -1;
 
   private Context                             context;
   private GetAdvertisingIdInfoTaskResultEvent getAdvertisingIdInfoTaskResultEvent;
 
   public GetAdvertisingIdInfoTask(Context context) {
     this.context = context;
-    getAdvertisingIdInfoTaskResultEvent = new GetAdvertisingIdInfoTaskResultEvent();
+    getAdvertisingIdInfoTaskResultEvent = new GetAdvertisingIdInfoTaskResultEvent(ERROR);
   }
 
   @Override
@@ -34,7 +36,8 @@ public class GetAdvertisingIdInfoTask extends AsyncTask<Void, Void, GetAdvertisi
       AdvertisingIdClient.Info adInfo = AdvertisingIdClient.getAdvertisingIdInfo(context);
       getAdvertisingIdInfoTaskResultEvent.setAdvertisingId(adInfo.getId());
       getAdvertisingIdInfoTaskResultEvent.setTrackingEnabled(adInfo.isLimitAdTrackingEnabled());
-    } catch (IOException e) {// TODO show toast on phone
+      getAdvertisingIdInfoTaskResultEvent.setMessage(SUCCESS);
+    } catch (IOException e) {
       Log.e(TAG, "Error: Unrecoverable error connecting to Google Play services", e);
     } catch (GooglePlayServicesNotAvailableException e) {
       Log.e(TAG, "Error: Google Play services is not available entirely", e);

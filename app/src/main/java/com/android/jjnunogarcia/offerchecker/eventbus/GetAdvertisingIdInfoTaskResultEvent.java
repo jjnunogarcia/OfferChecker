@@ -9,8 +9,10 @@ package com.android.jjnunogarcia.offerchecker.eventbus;
 public class GetAdvertisingIdInfoTaskResultEvent {
   private String  advertisingId;
   private boolean trackingEnabled;
+  private int     message;
 
-  public GetAdvertisingIdInfoTaskResultEvent() {
+  public GetAdvertisingIdInfoTaskResultEvent(int message) {
+    this.message = message;
     advertisingId = "";
     trackingEnabled = true;
   }
@@ -29,5 +31,13 @@ public class GetAdvertisingIdInfoTaskResultEvent {
 
   public void setTrackingEnabled(boolean trackingEnabled) {
     this.trackingEnabled = trackingEnabled;
+  }
+
+  public int getMessage() {
+    return message;
+  }
+
+  public void setMessage(int message) {
+    this.message = message;
   }
 }

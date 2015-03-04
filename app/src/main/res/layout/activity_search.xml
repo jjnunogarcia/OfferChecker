@@ -22,11 +22,11 @@
             android:text="@string/activity_search_title_text" />
 
         <EditText
-            android:id="@+id/activity_search_uid_edit_text"
+            android:id="@+id/activity_search_user_id_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:hint="@string/activity_search_uid_edit_text_hint" />
+            android:hint="@string/activity_search_user_id_edit_text_hint" />
 
         <EditText
             android:id="@+id/activity_search_api_key_edit_text"
@@ -36,18 +36,18 @@
             android:hint="@string/activity_search_api_key_edit_text_hint" />
 
         <EditText
-            android:id="@+id/activity_search_appid_edit_text"
+            android:id="@+id/activity_search_application_id_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:hint="@string/activity_search_appid_edit_text_hint" />
+            android:hint="@string/activity_search_application_id_edit_text_hint" />
 
         <EditText
-            android:id="@+id/activity_search_pub0_edit_text"
+            android:id="@+id/activity_search_custom_parameters_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:hint="@string/activity_search_option_edit_text_hint" />
+            android:hint="@string/activity_search_custom_parameters_edit_text_hint" />
 
         <Button
             android:id="@+id/activity_search_get_offers_button"
@@ -57,6 +57,33 @@
             android:layout_marginTop="25dp"
             android:textColor="@color/white"
             android:text="@string/activity_search_button_text" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="50dp"
+            android:weightSum="1">
+
+            <Button
+                android:id="@+id/activity_search_dummy_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/white"
+                android:layout_weight="0.5"
+                android:text="@string/activity_search_dummy_button_text" />
+
+            <Button
+                android:id="@+id/activity_search_clear_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/white"
+                android:layout_weight="0.5"
+                android:text="@string/activity_search_clear_button_text" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -33,16 +33,20 @@ public class SearchActivity extends ActionBarActivity {
 
   @InjectView(R.id.activity_search_title_text)
   TextView titleText;
-  @InjectView(R.id.activity_search_uid_edit_text)
-  EditText uidEditText;
+  @InjectView(R.id.activity_search_user_id_edit_text)
+  EditText userIdEditText;
   @InjectView(R.id.activity_search_api_key_edit_text)
   EditText apiKeyEditText;
-  @InjectView(R.id.activity_search_appid_edit_text)
-  EditText appIdEditText;
-  @InjectView(R.id.activity_search_pub0_edit_text)
-  EditText pub0EditText;
+  @InjectView(R.id.activity_search_application_id_edit_text)
+  EditText applicationIdEditText;
+  @InjectView(R.id.activity_search_custom_parameters_edit_text)
+  EditText customParametersEditText;
   @InjectView(R.id.activity_search_get_offers_button)
   Button   getOffersButton;
+  @InjectView(R.id.activity_search_dummy_button)
+  Button   dummyValuesButton;
+  @InjectView(R.id.activity_search_clear_button)
+  Button   clearButton;
 
   private ProgressDialog progressDialog;
 
@@ -57,44 +61,66 @@ public class SearchActivity extends ActionBarActivity {
   private void setFonts() {
     Typeface typeface = Typeface.createFromAsset(getAssets(), Utils.FONT_PATH_FABRICA);
     titleText.setTypeface(typeface);
-    uidEditText.setTypeface(typeface);
+    userIdEditText.setTypeface(typeface);
     apiKeyEditText.setTypeface(typeface);
-    appIdEditText.setTypeface(typeface);
-    pub0EditText.setTypeface(typeface);
+    applicationIdEditText.setTypeface(typeface);
+    customParametersEditText.setTypeface(typeface);
     getOffersButton.setTypeface(typeface);
+    dummyValuesButton.setTypeface(typeface);
+    clearButton.setTypeface(typeface);
   }
 
   @OnClick(R.id.activity_search_get_offers_button)
   void getOffers() {
-//    if (uidEditText.getText().toString().trim().isEmpty() || apiKeyEditText.getText().toString().trim().isEmpty() || appIdEditText.getText().toString().trim().isEmpty()) {
-//      Toast.makeText(getApplicationContext(), "Please, complete the fields", Toast.LENGTH_SHORT).show();
-//    } else {
-    progressDialog = ProgressDialog.show(this, "Loading", "Please wait...", true);
-    GetAdvertisingIdInfoTask getAdvertisingIdInfoTask = new GetAdvertisingIdInfoTask(getApplicationContext());
-    getAdvertisingIdInfoTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-//    }
+    if (userIdEditText.getText().toString().trim().isEmpty() || apiKeyEditText.getText().toString().trim().isEmpty() || applicationIdEditText.getText().toString().trim().isEmpty()) {
+      Toast.makeText(getApplicationContext(), getString(R.string.activity_search_complete_fields_message), Toast.LENGTH_SHORT).show();
+    } else {
+      progressDialog = ProgressDialog.show(this, getString(R.string.activity_search_progress_dialog_title), getString(R.string.activity_search_progress_dialog_body), true);
+      GetAdvertisingIdInfoTask getAdvertisingIdInfoTask = new GetAdvertisingIdInfoTask(getApplicationContext());
+      getAdvertisingIdInfoTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+  }
+
+  @OnClick(R.id.activity_search_dummy_button)
+  void insertDummyValues() {
+    applicationIdEditText.setText(getString(R.string.application_id));
+    userIdEditText.setText(getString(R.string.user_id));
+    customParametersEditText.setText(getString(R.string.custom_parameters));
+    apiKeyEditText.setText(getString(R.string.api_key));
+  }
+
+  @OnClick(R.id.activity_search_clear_button)
+  void clearValues() {
+    applicationIdEditText.setText("");
+    userIdEditText.setText("");
+    customParametersEditText.setText("");
+    apiKeyEditText.setText("");
   }
 
   public void onEvent(GetAdvertisingIdInfoTaskResultEvent getAdvertisingIdInfoTaskResultEvent) {
-    String advertisingId = getAdvertisingIdInfoTaskResultEvent.getAdvertisingId();
-    String trackingEnabled = String.valueOf(getAdvertisingIdInfoTaskResultEvent.isTrackingEnabled());
-    String unixTimestamp = String.valueOf(System.currentTimeMillis() / 1000L);
-    List<NameValuePair> parameters = new ArrayList<>();
-    parameters.add(new BasicNameValuePair("format", "json"));
-    parameters.add(new BasicNameValuePair("appid", "2070"));
-    parameters.add(new BasicNameValuePair("uid", "spiderman"));
-    parameters.add(new BasicNameValuePair("locale", getLanguage()));
-    parameters.add(new BasicNameValuePair("os_version", Build.VERSION.RELEASE));
-    parameters.add(new BasicNameValuePair("timestamp", String.valueOf(unixTimestamp)));
-    parameters.add(new BasicNameValuePair("google_ad_id", advertisingId));
-    parameters.add(new BasicNameValuePair("google_ad_id_limited_tracking_enabled", String.valueOf(trackingEnabled)));
-    parameters.add(new BasicNameValuePair("pub0", "test"));
-    GetOffersTask getOffersTask = new GetOffersTask(getApplicationContext(), parameters, getString(R.string.api_key)); // TODO get api key from input
-    getOffersTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    if (getAdvertisingIdInfoTaskResultEvent.getMessage() == GetAdvertisingIdInfoTask.SUCCESS) {
+      String advertisingId = getAdvertisingIdInfoTaskResultEvent.getAdvertisingId();
+      String trackingEnabled = String.valueOf(getAdvertisingIdInfoTaskResultEvent.isTrackingEnabled());
+      String unixTimestamp = String.valueOf(System.currentTimeMillis() / 1000L);
+      List<NameValuePair> parameters = new ArrayList<>();
+      parameters.add(new BasicNameValuePair("format", getString(R.string.format)));
+      parameters.add(new BasicNameValuePair("appid", applicationIdEditText.getText().toString().trim()));
+      parameters.add(new BasicNameValuePair("uid", userIdEditText.getText().toString().trim()));
+      parameters.add(new BasicNameValuePair("locale", getLanguage()));
+      parameters.add(new BasicNameValuePair("os_version", Build.VERSION.RELEASE));
+      parameters.add(new BasicNameValuePair("timestamp", String.valueOf(unixTimestamp)));
+      parameters.add(new BasicNameValuePair("google_ad_id", advertisingId));
+      parameters.add(new BasicNameValuePair("google_ad_id_limited_tracking_enabled", String.valueOf(trackingEnabled)));
+      parameters.add(new BasicNameValuePair("pub0", customParametersEditText.getText().toString().trim()));
+      GetOffersTask getOffersTask = new GetOffersTask(getApplicationContext(), parameters, apiKeyEditText.getText().toString().trim());
+      getOffersTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    } else {
+      Toast.makeText(getApplicationContext(), getString(R.string.activity_search_play_services_error), Toast.LENGTH_SHORT).show();
+    }
   }
 
   public void onEvent(GetOffersTaskResultEvent getOffersTaskResultEvent) {
-    progressDialog.hide();
+    progressDialog.dismiss();
     if (getOffersTaskResultEvent.getServerResponse() == GetOffersTask.SERVER_SUCCESS) {
       ResultsActivity.startNewActivity(getApplicationContext(), getOffersTaskResultEvent.getOfferTaskResult().getOffers());
     } else if (getOffersTaskResultEvent.getServerResponse() == GetOffersTask.SIGNATURE_FAILED) {

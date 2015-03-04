@@ -36,7 +36,7 @@ import java.util.ArrayList;
  */
 public class OfferDetailActivity extends ActionBarActivity {
   private static final String TAG       = OfferDetailActivity.class.getSimpleName();
-  private static final String KEY_OFFER = "key_offer";
+  static final String KEY_OFFER = "key_offer";
 
   @InjectView(R.id.activity_offer_detail_title_header_text)
   TextView    titleHeaderText;

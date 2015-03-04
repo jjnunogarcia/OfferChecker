@@ -5,13 +5,19 @@
 
     <string name="activity_search_action_bar">Search for offers</string>
     <string name="activity_search_title_text">Check offer!</string>
-    <string name="activity_search_uid_edit_text_hint">uid</string>
+    <string name="activity_search_user_id_edit_text_hint">User ID</string>
     <string name="activity_search_api_key_edit_text_hint">API Key</string>
-    <string name="activity_search_appid_edit_text_hint">appid</string>
-    <string name="activity_search_option_edit_text_hint">pub0</string>
+    <string name="activity_search_application_id_edit_text_hint">Application ID</string>
+    <string name="activity_search_custom_parameters_edit_text_hint">Custom parameters</string>
     <string name="activity_search_button_text">Get offers</string>
+    <string name="activity_search_dummy_button_text">Dummy values</string>
+    <string name="activity_search_clear_button_text">Clear fields</string>
     <string name="activity_search_bad_signature">Signature verification failed</string>
+    <string name="activity_search_complete_fields_message">Please, complete the fields</string>
+    <string name="activity_search_progress_dialog_title">Loading</string>
+    <string name="activity_search_progress_dialog_body">Please wait…</string>
     <string name="activity_search_error">There has been an error in the search. Please, try again</string>
+    <string name="activity_search_play_services_error">Error connecting to Google Play Services</string>
 
     <string name="activity_results_action_bar">Search results</string>
     <string name="activity_results_no_offers">No offers</string>
