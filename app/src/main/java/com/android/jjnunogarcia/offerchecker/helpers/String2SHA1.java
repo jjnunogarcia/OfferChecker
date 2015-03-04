@@ -10,7 +10,7 @@ import java.security.NoSuchAlgorithmException;
  *
  * @author jjnunogarcia@gmail.com
  */
-public class String2SHA1 {
+public final class String2SHA1 {
   private static String convertToHex(byte[] data) {
     StringBuilder buf = new StringBuilder();
     for (byte b : data) {

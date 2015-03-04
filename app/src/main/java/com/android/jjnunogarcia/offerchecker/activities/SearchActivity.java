@@ -2,7 +2,6 @@ package com.android.jjnunogarcia.offerchecker.activities;
 
 import android.app.ProgressDialog;
 import android.graphics.Typeface;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -14,11 +13,12 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import com.android.jjnunogarcia.offerchecker.R;
+import com.android.jjnunogarcia.offerchecker.backend.BackendEndPoint;
 import com.android.jjnunogarcia.offerchecker.backend.requests.GetOffersTask;
-import com.android.jjnunogarcia.offerchecker.eventbus.GetAdvertisingIdInfoTaskResultEvent;
+import com.android.jjnunogarcia.offerchecker.eventbus.requests.GetAdvertisingIdInfoTaskResultEvent;
 import com.android.jjnunogarcia.offerchecker.eventbus.requests.GetOffersTaskResultEvent;
 import com.android.jjnunogarcia.offerchecker.helpers.Utils;
-import com.android.jjnunogarcia.offerchecker.threads.GetAdvertisingIdInfoTask;
+import com.android.jjnunogarcia.offerchecker.backend.requests.GetAdvertisingIdInfoTask;
 import de.greenrobot.event.EventBus;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -76,8 +76,7 @@ public class SearchActivity extends ActionBarActivity {
       Toast.makeText(getApplicationContext(), getString(R.string.activity_search_complete_fields_message), Toast.LENGTH_SHORT).show();
     } else {
       progressDialog = ProgressDialog.show(this, getString(R.string.activity_search_progress_dialog_title), getString(R.string.activity_search_progress_dialog_body), true);
-      GetAdvertisingIdInfoTask getAdvertisingIdInfoTask = new GetAdvertisingIdInfoTask(getApplicationContext());
-      getAdvertisingIdInfoTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+      BackendEndPoint.getAdvertisingIdInfoTask(getApplicationContext());
     }
   }
 
@@ -99,24 +98,31 @@ public class SearchActivity extends ActionBarActivity {
 
   public void onEvent(GetAdvertisingIdInfoTaskResultEvent getAdvertisingIdInfoTaskResultEvent) {
     if (getAdvertisingIdInfoTaskResultEvent.getMessage() == GetAdvertisingIdInfoTask.SUCCESS) {
-      String advertisingId = getAdvertisingIdInfoTaskResultEvent.getAdvertisingId();
-      String trackingEnabled = String.valueOf(getAdvertisingIdInfoTaskResultEvent.isTrackingEnabled());
-      String unixTimestamp = String.valueOf(System.currentTimeMillis() / 1000L);
-      List<NameValuePair> parameters = new ArrayList<>();
-      parameters.add(new BasicNameValuePair("format", getString(R.string.format)));
-      parameters.add(new BasicNameValuePair("appid", applicationIdEditText.getText().toString().trim()));
-      parameters.add(new BasicNameValuePair("uid", userIdEditText.getText().toString().trim()));
-      parameters.add(new BasicNameValuePair("locale", getLanguage()));
-      parameters.add(new BasicNameValuePair("os_version", Build.VERSION.RELEASE));
-      parameters.add(new BasicNameValuePair("timestamp", String.valueOf(unixTimestamp)));
-      parameters.add(new BasicNameValuePair("google_ad_id", advertisingId));
-      parameters.add(new BasicNameValuePair("google_ad_id_limited_tracking_enabled", String.valueOf(trackingEnabled)));
-      parameters.add(new BasicNameValuePair("pub0", customParametersEditText.getText().toString().trim()));
-      GetOffersTask getOffersTask = new GetOffersTask(getApplicationContext(), parameters, apiKeyEditText.getText().toString().trim());
-      getOffersTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+      List<NameValuePair> parameters = assembleCallParameters(getAdvertisingIdInfoTaskResultEvent);
+      BackendEndPoint.getOffersTask(getApplicationContext(), parameters, apiKeyEditText.getText().toString().trim());
     } else {
       Toast.makeText(getApplicationContext(), getString(R.string.activity_search_play_services_error), Toast.LENGTH_SHORT).show();
     }
+  }
+
+  private List<NameValuePair> assembleCallParameters(GetAdvertisingIdInfoTaskResultEvent getAdvertisingIdInfoTaskResultEvent) {
+    List<NameValuePair> parameters = new ArrayList<>();
+
+    String advertisingId = getAdvertisingIdInfoTaskResultEvent.getAdvertisingId();
+    String trackingEnabled = String.valueOf(getAdvertisingIdInfoTaskResultEvent.isTrackingEnabled());
+    String unixTimestamp = String.valueOf(System.currentTimeMillis() / 1000L);
+
+    parameters.add(new BasicNameValuePair("format", getString(R.string.format)));
+    parameters.add(new BasicNameValuePair("appid", applicationIdEditText.getText().toString().trim()));
+    parameters.add(new BasicNameValuePair("uid", userIdEditText.getText().toString().trim()));
+    parameters.add(new BasicNameValuePair("locale", getLanguage()));
+    parameters.add(new BasicNameValuePair("os_version", Build.VERSION.RELEASE));
+    parameters.add(new BasicNameValuePair("timestamp", String.valueOf(unixTimestamp)));
+    parameters.add(new BasicNameValuePair("google_ad_id", advertisingId));
+    parameters.add(new BasicNameValuePair("google_ad_id_limited_tracking_enabled", String.valueOf(trackingEnabled)));
+    parameters.add(new BasicNameValuePair("pub0", customParametersEditText.getText().toString().trim()));
+
+    return parameters;
   }
 
   public void onEvent(GetOffersTaskResultEvent getOffersTaskResultEvent) {

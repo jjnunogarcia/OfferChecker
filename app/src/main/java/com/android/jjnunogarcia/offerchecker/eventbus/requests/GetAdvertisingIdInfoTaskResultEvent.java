@@ -1,4 +1,4 @@
-package com.android.jjnunogarcia.offerchecker.eventbus;
+package com.android.jjnunogarcia.offerchecker.eventbus.requests;
 
 /**
  * User: jesus

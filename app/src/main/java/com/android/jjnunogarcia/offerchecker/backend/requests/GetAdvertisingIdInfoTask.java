@@ -1,9 +1,9 @@
-package com.android.jjnunogarcia.offerchecker.threads;
+package com.android.jjnunogarcia.offerchecker.backend.requests;
 
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import com.android.jjnunogarcia.offerchecker.eventbus.GetAdvertisingIdInfoTaskResultEvent;
+import com.android.jjnunogarcia.offerchecker.eventbus.requests.GetAdvertisingIdInfoTaskResultEvent;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
