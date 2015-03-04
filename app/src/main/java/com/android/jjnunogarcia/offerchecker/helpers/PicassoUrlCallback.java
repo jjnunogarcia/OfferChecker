@@ -10,7 +10,7 @@ import com.squareup.picasso.Callback;
  * User: jesus
  * Date: 01/03/15
  *
- * @author j.nuno@klara.com
+ * @author jjnunogarcia@gmail.com
  */
 public class PicassoUrlCallback implements Callback {
   public static final String TAG = PicassoUrlCallback.class.getSimpleName();

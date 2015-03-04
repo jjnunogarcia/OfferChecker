@@ -20,7 +20,7 @@ import java.util.List;
  * User: jesus
  * Date: 28/02/15
  *
- * @author j.nuno@klara.com
+ * @author jjnunogarcia@gmail.com
  */
 public class OfferTypesListAdapter extends BaseAdapter {
   private Context         context;

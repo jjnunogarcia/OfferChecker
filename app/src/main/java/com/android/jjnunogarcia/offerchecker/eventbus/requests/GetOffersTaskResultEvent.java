@@ -6,7 +6,7 @@ import com.android.jjnunogarcia.offerchecker.model.jsonparsing.OfferTaskResult;
  * User: jesus
  * Date: 25/02/15
  *
- * @author j.nuno@klara.com
+ * @author jjnunogarcia@gmail.com
  */
 public class GetOffersTaskResultEvent {
   private int             serverResponse;

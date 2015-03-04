@@ -4,7 +4,7 @@ package com.android.jjnunogarcia.offerchecker.eventbus;
  * User: jesus
  * Date: 26/02/15
  *
- * @author j.nuno@klara.com
+ * @author jjnunogarcia@gmail.com
  */
 public class GetAdvertisingIdInfoTaskResultEvent {
   private String  advertisingId;

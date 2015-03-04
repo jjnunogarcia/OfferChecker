@@ -11,7 +11,7 @@ import android.widget.TextView;
  * User: jesus
  * Date: 01/03/15
  *
- * @author j.nuno@klara.com
+ * @author jjnunogarcia@gmail.com
  */
 public final class Utils {
   public static final String FONT_PATH_FABRICA = "fonts/Fabrica.otf";

@@ -23,7 +23,7 @@ import java.util.ArrayList;
  * User: jesus
  * Date: 28/02/15
  *
- * @author j.nuno@klara.com
+ * @author jjnunogarcia@gmail.com
  */
 public class ResultsActivity extends ActionBarActivity implements AdapterView.OnItemClickListener {
   private static final String TAG        = ResultsActivity.class.getSimpleName();

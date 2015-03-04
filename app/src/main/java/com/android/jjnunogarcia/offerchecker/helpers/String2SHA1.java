@@ -8,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
  * User: jesus
  * Date: 26/02/15
  *
- * @author j.nuno@klara.com
+ * @author jjnunogarcia@gmail.com
  */
 public class String2SHA1 {
   private static String convertToHex(byte[] data) {

@@ -15,7 +15,7 @@ import java.io.IOException;
  * User: jesus
  * Date: 26/02/15
  *
- * @author j.nuno@klara.com
+ * @author jjnunogarcia@gmail.com
  */
 public class GetAdvertisingIdInfoTask extends AsyncTask<Void, Void, GetAdvertisingIdInfoTaskResultEvent> {
   private static final String TAG     = GetAdvertisingIdInfoTask.class.getSimpleName();

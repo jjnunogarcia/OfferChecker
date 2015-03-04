@@ -34,7 +34,7 @@ import java.util.List;
  * User: Jesús
  * Date: 25/02/14
  *
- * @author j.nuno@klara.com
+ * @author jjnunogarcia@gmail.com
  */
 public class GetOffersTask extends AsyncTask<Void, Void, GetOffersTaskResultEvent> implements ResponseHandler<GetOffersTaskResultEvent> {
   private static final String TAG                  = GetOffersTask.class.getSimpleName();

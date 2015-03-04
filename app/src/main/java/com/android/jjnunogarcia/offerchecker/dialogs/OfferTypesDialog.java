@@ -24,7 +24,7 @@ import java.util.ArrayList;
  * User: jesus
  * Date: 01/03/15
  *
- * @author j.nuno@klara.com
+ * @author jjnunogarcia@gmail.com
  */
 public class OfferTypesDialog extends DialogFragment {
   public static final String TAG             = OfferTypesDialog.class.getSimpleName();

@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
  * User: jesus
  * Date: 28/02/15
  *
- * @author j.nuno@klara.com
+ * @author jjnunogarcia@gmail.com
  */
 public class OfferType implements Parcelable {
   @SerializedName("offer_type_id")
